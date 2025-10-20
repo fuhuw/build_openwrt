@@ -59,7 +59,7 @@ rm -rf feeds/luci/applications/openlist2
 
 
 wait
-sed -i 's/immortalwrt/redmek40/g' package/base-files/files/bin/config_generate
+sed -i 's/immortalWrt/redmek40/g' package/base-files/files/bin/config_generate
 # 设置默认密码为 password
 sed -i 's/root:::0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.::0:99999:7:::/g' openwrt/package/base-files/files/etc/shadow
 # 修改默认 IP 为 192.168.1.99
