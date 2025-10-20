@@ -59,14 +59,19 @@ CONFIG_PACKAGE_luci-theme-bootstrap=y
 CONFIG_LUCI_LANG_zh_Hans=y
 
 # 网络基础
-CONFIG_PACKAGE_dnsmasq=y
 CONFIG_PACKAGE_firewall4=y
 CONFIG_PACKAGE_nftables=y
 CONFIG_PACKAGE_odhcp6c=y
 CONFIG_PACKAGE_odhcpd-ipv6only=y
 CONFIG_PACKAGE_ppp=y
 CONFIG_PACKAGE_ppp-mod-pppoe=y
+# 确保内核模块正确
+CONFIG_PACKAGE_kmod-usb-net=y
+CONFIG_PACKAGE_kmod-usb-net-rtl8152=y
+CONFIG_PACKAGE_kmod-usb-storage-uas=y
 
+# 网络驱动
+CONFIG_PACKAGE_kmod-r8168=y
 # IPv6支持
 CONFIG_PACKAGE_ipv6helper=y
 CONFIG_PACKAGE_ip6tables=y
