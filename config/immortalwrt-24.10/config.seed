@@ -12,7 +12,10 @@ CONFIG_PACKAGE_ca-bundle=y
 CONFIG_PACKAGE_ca-certificates=y
 
 # 必需的工具包 (基于unifreq/openwrt_packit要求)
-CONFIG_PACKAGE_perl-time-hires
+# Perl 模块支持
+CONFIG_PACKAGE_perlbase-time=y
+CONFIG_PACKAGE_perlbase-time-hires=y
+CONFIG_PACKAGE_perlbase-essential=y
 
 # 磁盘工具
 CONFIG_PACKAGE_blkid=y
