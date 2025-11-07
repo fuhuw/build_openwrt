@@ -63,7 +63,8 @@ rm -rf package/small-package/luci-app-openlist2
 rm -rf package/small-package/alist
 rm -rf package/small-package/openlist2
 rm -rf feeds/luci/applications/openlist2
-
+rm -rf feeds/packages/lang/golang
+git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
 sed -i 's/ImmortalWrt/redmek40/g' package/base-files/files/bin/config_generate
 # 设置默认密码为 password
 #sed -i 's/root:::0:99999:7:::/root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.::0:99999:7:::/g' openwrt/package/base-files/files/etc/shadow
