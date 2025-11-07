@@ -1,10 +1,5 @@
 #!/bin/bash
 
-
-
-
-
-
 # Remove packages
 rm -rf feeds/luci/applications/luci-app-momo
 rm -rf feeds/luci/applications/luci-app-alist
@@ -63,6 +58,7 @@ rm -rf package/small-package/luci-app-openlist2
 rm -rf package/small-package/alist
 rm -rf package/small-package/openlist2
 rm -rf feeds/luci/applications/openlist2
+rm -rf package/small-package/luci-app-lingtigameacc
 rm -rf feeds/packages/lang/golang
 git clone https://github.com/sbwml/packages_lang_golang -b 24.x feeds/packages/lang/golang
 sed -i 's/ImmortalWrt/redmek40/g' package/base-files/files/bin/config_generate
