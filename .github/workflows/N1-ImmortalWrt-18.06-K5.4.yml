@@ -74,7 +74,6 @@ jobs:
       run: |
         ./scripts/feeds update -a
         ./scripts/feeds install -a
-        ./scripts/feeds install libfuse  # 确保 FUSE 包被安装
         df -hT
 
     - name: Load custom config
@@ -86,15 +85,7 @@ jobs:
         $GITHUB_WORKSPACE/$DIY_SH
         df -hT
 
-    - name: Configure FUSE and dependencies
-      working-directory: ./openwrt
-      run: |
-        echo "CONFIG_FUSE_FS=y" >> .config
-        echo "CONFIG_PACKAGE_kmod-fuse=y" >> .config
-        echo "CONFIG_PACKAGE_libfuse=y" >> .config
-        echo "CONFIG_PACKAGE_alist=y" >> .config
-        make defconfig
-        df -hT
+   
 
     - name: SSH connect to Actions
       uses: P3TERX/ssh2actions@main
@@ -117,24 +108,7 @@ jobs:
         echo "compile_status=success" >> $GITHUB_ENV
         df -hT
 
-    - name: Safe cleanup after compilation
-      run: |
-        # 安全删除目标文件（只删除文件，不删除目录）
-        rm -rf /home/runner/work/test/test/openwrt/bin/targets/*/*/packages || true
-        rm -rf /home/runner/work/test/test/openwrt/bin/targets/*/*/buildinfo || true
-        rm -rf /home/runner/work/test/test/openwrt/bin/targets/*/*/profiles || true
-        rm -rf /home/runner/work/test/test/openwrt/bin/targets/*/*/sha256sums || true
-        
-        # 安全删除 .o 文件（只删除文件）
-        find /workdir/openwrt -name "*.o" -type f -exec rm -f {} \; 2>/dev/null || true
-        
-        # 安全删除 .log 文件
-        find /workdir/openwrt -name "*.log" -type f -exec rm -f {} \; 2>/dev/null || true
-        
-        # 清理 ccache 缓存
-        ccache -c || true
-        
-        df -hT
+
 
     - name: Free up space - Compile Post
       uses: jlumbroso/free-disk-space@main
